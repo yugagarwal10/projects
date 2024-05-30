@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        border: border-box;
+    }
+    body{
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         margin-top: 100px;
+         height: 450px;
+         width: 350px;
+         border: 2px solid white;
+         border-radius: 10px;
+         box-shadow: 2px 2px 10px white;
+         background-color: white;
+         padding:40px 40px 50px 50px;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
+    .header{
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    .initial,.month,.rate,.years{
+        width:350px;
+        height:25px;
+        margin-bottom: 10px;
+    }
+    .calculate{
+        width: 350px;
+        height:40px;
+        background-color: green;
+        color: white;
+        margin-top: 10px;
+    }
+    .output{
+        margin-top: 20px;
+        font-size: 15px;
+        background-color: grey;
+        height: 40px;
+        width:350px;
+    }
+</style>
+<body>
+    <div class="container">
+            <h1 class="header">MUTUAL FUND INTEREST CALCULATOR</h1>
+        <form>
+            <label for="intials"><b>Initial Investment (&#8377):</b></label><br>
+            <input type="text" class="initial"><br>
+            <label for="monthly"><b>Monthly Contribution (&#8377):</b></label><br>
+            <input type="text" class="month"><br>
+            <label for="interest"><b>Annual Interest Rate(%):</b></label><br>
+            <input type="text" class="rate"><br>
+            <label for="year"><b>Number Of Years:</b></label><br>
+            <input type="text" class="years"><br>
+        </form>
+        <button class="calculate">Calculate</button>
+        <div class="output"></div>
+    </div>
+</body>
+<script>
+    document.querySelector('.calculate').addEventListener('click', () => {
+  const initial = parseFloat(document.querySelector('.initial').value);
+  const month = parseFloat(document.querySelector('.month').value);
+  const rate = parseFloat(document.querySelector('.rate').value);
+  const years = parseFloat(document.querySelector('.years').value);
+
+  if (isNaN(initial) || isNaN(month) || isNaN(rate) || isNaN(years)) {
+    alert('Please enter valid numbers for all fields');
+    return;
+}
+
+
+ const totalPrincipal = initial + (month * 12 * years);
+  const amount = Math.floor((initial * (1 + rate / 100) ** years) + (month * 12 * (((1 + rate / 100) ** years - 1) / (rate / 100))));
+  const interest = amount - totalPrincipal;
+
+  document.querySelector('.output').textContent = `Total Principal: ${totalPrincipal}, Interest: ${interest}, Amount: ${amount}`;
+});
+
+</script>
+</html>

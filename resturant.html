@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-image: linear-gradient(to bottom,#0093E9,#80D0C7);
+        height: 100vh;
+    }
+    .main-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 150px;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border:border-box;
+        width: 500px;
+        height: 500px;
+        box-shadow: 10px 10px 20px whitesmoke,-10px -10px 20px whitesmoke;
+    }
+    .head{
+        font-size:80px;
+    }
+    .amount{
+        font-size:25px;
+    }
+    .enter{
+        margin-top: 10px;
+        text-align: center;
+        width:400px;
+        border-radius: 15px;
+        height: 30px;
+        outline: none;
+        border: none;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .gst,.service,.tip{
+        width: 150px;
+        height: 30px;
+        border-radius: 30px;
+        border: none;
+        background-color:white;
+        color: black;
+        margin-bottom: 20px;
+    }
+    .output{
+        margin-top: 30px;
+        height: 70px;
+        width: 400px;
+        border:2px solid black;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <div class="main-container">
+        <div class="main">
+        <p class="head"><b>Resturant</b></p>
+        <p class="amount"> <b>Bill Amount:</b></p>
+        <input type="number" class="enter" placeholder="enter bill amount"><br>
+        <button class="gst">GST</button>
+        <button class="service">Service Charge</button>
+        <button class="tip">Tip</button>
+        <div class="output"></div>
+    </div>
+    </div>
+</body>
+<script>
+const gstbtn=document.querySelector('.gst').addEventListener('click',function(event){
+const amount=document.querySelector('.enter').value;
+let gstamnt=(amount*18)/100;
+
+const output=document.querySelector('.output').innerText=`gst: ${gstamnt}`;
+});
+const servicebtn=document.querySelector('.service').addEventListener('click',function(event){
+    const amount=document.querySelector('.enter').value;
+    let servicamnt=(amount*10)/100;
+    const output=document.querySelector('.output').innerText=`Service Charge: ${servicamnt}`;
+    });
+    const tipbtn=document.querySelector('.tip').addEventListener('click',function(event){
+        const amount=document.querySelector('.enter').value;
+        let tipamnt=(amount*5)/100;
+        const output=document.querySelector('.output').innerText=`Tip amount: ${tipamnt}`;
+    });
+</script>
+
+</html>
